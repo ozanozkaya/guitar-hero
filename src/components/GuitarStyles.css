@@ -1,0 +1,67 @@
+.guitar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 20px auto;
+  background: url("../assets/images/Guitar.png") no-repeat center;
+  background-size: contain;
+  position: relative;
+  height: 800px; /* Adjust based on your image's aspect ratio and desired size */
+}
+
+.string {
+  flex: 1;
+  margin: 0 5px;
+  padding: 10px 50px;
+  background-color: lightgray;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  position: absolute;
+}
+
+.string:hover {
+  background-color: lightslategray;
+}
+
+.string-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px;
+  width: 100px;
+}
+
+select {
+  margin-left: 10px;
+  visibility: visible;
+  z-index: 10;
+  max-width: 40px;
+}
+
+.key-input {
+  z-index: 1000; /* this is just an example value; the actual value might be different */
+  position: relative; /* this is required for z-index to take effect */
+}
+
+.key-mapping {
+  margin-top: 500px;
+}
+
+input {
+  max-width: 50px;
+  margin: 1px;
+}
+
+.reset-assignment {
+  margin-top: 500px;
+  margin-left: 50px;
+  background-color: red;
+  color: white;
+  border-radius: 3px;
+  border: none;
+  height: 23px;
+  width: 65px;
+}
