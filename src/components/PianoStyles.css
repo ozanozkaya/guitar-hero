@@ -1,0 +1,354 @@
+.piano {
+  display: flex;
+  background-color: #1d1d1d; /* Darker background to resemble a real piano */
+  padding: 20px 0; /* Padding to give space around the keys */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Shadow for depth effect */
+  align-items: flex-start;
+  overflow-x: auto; /* Horizontal scroll for overflow */
+  width: max-content;
+  margin: 0 auto; /* Centering the piano */
+}
+
+.key {
+  height: 150px;
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out; /* Smooth transition for all changes */
+  font-size: 0;
+  user-select: none; /* Disabling text selection */
+}
+
+.key:hover {
+  background-color: lightslategray;
+}
+
+.key-hover {
+  background-color: lightslategray;
+}
+
+.active-key {
+  background-color: black !important;
+}
+
+.white {
+  width: 26px; /* Slightly increased width for better visibility */
+  background-color: #f5f5f5; /* Off-white color for the white keys */
+  border: 1px solid #ccc; /* Light border around white keys */
+  border-radius: 0 0 4px 4px; /* Rounded bottom corners */
+}
+
+.white:active {
+  background-color: black; /* Different color for active state */
+}
+
+.black {
+  width: 18px; /* Narrower black keys */
+  height: 100px; /* Shorter black keys */
+  background-color: #404040; /* Dark gray instead of pure black */
+  margin-left: -9px;
+  margin-right: -9px;
+  z-index: 2;
+  border-radius: 0 0 3px 3px; /* Slightly rounded corners at the bottom */
+}
+
+.black:active {
+  background-color: black; /* Slightly lighter color when pressed */
+}
+
+/* Optional: Adding a subtle gradient for a 3D effect on keys */
+.white,
+.black {
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.8),
+    rgba(0, 0, 0, 0.05)
+  );
+}
+
+.black:active,
+.white:active {
+  background-image: none; /* Removing gradient on active to differentiate */
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 8px;
+  z-index: 1000;
+}
+
+.modal p {
+  margin: 0 0 10px;
+}
+
+.modal button {
+  cursor: pointer;
+}
+
+.assign-button {
+  background-color: black;
+  color: white;
+  font-size: 20px;
+  padding: 10px 60px;
+  border-radius: 5px;
+  margin: 10px 0px;
+  cursor: pointer;
+}
+
+.assign-button:active {
+  background-color: #dfdfdf; /* Different color for active state */
+}
+
+.assign-button:hover {
+  color: grey;
+  opacity: 0.7;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+
+:root {
+  --glow-color: hsl(186 100% 69%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  min-height: 100vh;
+
+  justify-content: center;
+  align-items: center;
+  background: black;
+}
+
+.glowing-btn {
+  margin-top: 50px;
+  position: relative;
+  color: var(--glow-color);
+  cursor: pointer;
+  padding: 0.35em 1em;
+  border: 0.15em solid var(--glow-color);
+  border-radius: 0.45em;
+  background: none;
+  perspective: 2em;
+  font-family: "Raleway", sans-serif;
+  font-size: 2em;
+  font-weight: 900;
+  letter-spacing: 1em;
+
+  -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 0.5em 0px var(--glow-color);
+  -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 0.5em 0px var(--glow-color);
+  box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 0.5em 0px var(--glow-color);
+  animation: border-flicker 2s linear infinite;
+}
+
+.glowing-txt {
+  float: left;
+  margin-right: -0.8em;
+  -webkit-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+    0 0 0.45em var(--glow-color);
+  -moz-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+    0 0 0.45em var(--glow-color);
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em var(--glow-color);
+  animation: text-flicker 3s linear infinite;
+}
+
+.faulty-letter {
+  opacity: 0.5;
+  animation: faulty-flicker 2s linear infinite;
+}
+
+.glowing-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.7;
+  filter: blur(1em);
+  transform: translateY(120%) rotateX(95deg) scale(1, 0.35);
+  background: var(--glow-color);
+  pointer-events: none;
+}
+
+.glowing-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  z-index: -1;
+  background-color: var(--glow-color);
+  box-shadow: 0 0 2em 0.2em var(--glow-color);
+  transition: opacity 100ms linear;
+}
+
+.glowing-btn:hover {
+  color: rgba(0, 0, 0, 0.8);
+  text-shadow: none;
+  animation: none;
+}
+
+.glowing-btn:hover .glowing-txt {
+  animation: none;
+}
+
+.glowing-btn:hover .faulty-letter {
+  animation: none;
+  text-shadow: none;
+  opacity: 1;
+}
+
+.glowing-btn:hover:before {
+  filter: blur(1.5em);
+  opacity: 1;
+}
+
+.glowing-btn:hover:after {
+  opacity: 1;
+}
+
+@keyframes faulty-flicker {
+  0% {
+    opacity: 0.1;
+  }
+  2% {
+    opacity: 0.1;
+  }
+  4% {
+    opacity: 0.5;
+  }
+  19% {
+    opacity: 0.5;
+  }
+  21% {
+    opacity: 0.1;
+  }
+  23% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.5;
+  }
+  83% {
+    opacity: 0.4;
+  }
+
+  87% {
+    opacity: 1;
+  }
+}
+
+@keyframes text-flicker {
+  0% {
+    opacity: 0.1;
+  }
+
+  2% {
+    opacity: 1;
+  }
+
+  8% {
+    opacity: 0.1;
+  }
+
+  9% {
+    opacity: 1;
+  }
+
+  12% {
+    opacity: 0.1;
+  }
+  20% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.3;
+  }
+  30% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 0.7;
+  }
+  72% {
+    opacity: 0.2;
+  }
+
+  77% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes border-flicker {
+  0% {
+    opacity: 0.1;
+  }
+  2% {
+    opacity: 1;
+  }
+  4% {
+    opacity: 0.1;
+  }
+
+  8% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .glowing-btn {
+    font-size: 1em;
+  }
+}
+
+@keyframes fadeOutUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px); /* Adjust this value as needed */
+  }
+}
+
+.active-note {
+  animation: fadeOutUp 2s ease-in-out forwards; /* Adjust the duration as needed */
+  color: white;
+  /* Other styling as needed */
+}

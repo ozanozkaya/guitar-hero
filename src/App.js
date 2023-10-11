@@ -1,10 +1,10 @@
 import "./App.css";
-import VirtualGuitar from "./components/VirtualGuitar.jsx";
+import VirtualPiano from "./components/VirtualPiano";
 
 function App() {
   return (
     <div className="App">
-      <VirtualGuitar />
+      <VirtualPiano />
     </div>
   );
 }
